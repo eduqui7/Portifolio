@@ -1,0 +1,130 @@
+# Landing Page Portfólio — Eduardo Quirino
+
+## Objetivo
+Criar uma landing page pessoal, de página única (single-page), para Eduardo Quirino —
+Diretor de TV e Operador de Streaming — com o objetivo de atrair recrutadores e emissoras.
+O design segue o estilo **Spool**: dark mode elegante, acento dourado, scroll por seções
+com indicadores, vídeo destaque + grade "Up Next" e navegação horizontal no topo.
+
+---
+
+## Abordagens de Design (Trade-offs)
+
+### ✅ Abordagem 1 — Recomendada: "Spool Clone Fiel" (HTML/CSS/JS Puro)
+**Estratégia:** Replicar fielmente o template de referência com HTML semântico, CSS custom
+properties e JavaScript vanilla. Sem frameworks. Máxima performance.
+
+**Prós:**
+- Zero dependências — carrega instantaneamente
+- Hospedagem estática gratuita (GitHub Pages / Vercel / Netlify)
+- Código simples, fácil de manter e atualizar vídeos
+- Performance 100/100 no Lighthouse
+
+**Contras:**
+- Scroll "snap" entre seções exige CSS/JS cuidadoso
+- Sem CMS — atualizações manuais no HTML
+
+**Indicado para:** este projeto ✅
+
+---
+
+### Abordagem 2 — "Astro Static" (Framework Moderno)
+**Estratégia:** Usar Astro.js para componentizar as seções.
+
+**Prós:** Componentização, Markdown para dados, build otimizado
+**Contras:** Overhead de setup, curva de aprendizado, menos necessário para 1 página
+
+---
+
+### Abordagem 3 — "WordPress Theme"
+**Estratégia:** Criar um tema WordPress customizado.
+
+**Prós:** CMS visual para edição
+**Contras:** Excesso de complexidade, hosting pago, mais lento
+
+---
+
+## Decisão: Abordagem 1 escolhida
+> HTML/CSS/JS puro. Simples, rápido, gratuito, fácil de atualizar.
+
+---
+
+## Design Visual Confirmado
+
+| Elemento | Valor |
+|---|---|
+| Fundo | `#0a0a0a` (preto quase total) |
+| Texto principal | `#ffffff` |
+| Acento | `#D4A76A` (dourado/âmbar) |
+| Tipografia | Inter (Google Fonts) |
+| Nav labels | UPPERCASE |
+| Layout | Full-viewport sections, scroll-snap |
+
+---
+
+## Proposed Changes
+
+### Component: Landing Page Única
+
+#### [NEW] index.html (file:///Users/eduardoquirino/Downloads/Portifólio/index.html)
+Estrutura HTML completa com todas as seções:
+- `<nav>` — logo "EQ" + links de seção + indicadores de ponto
+- `#hero` — nome, cargo, tagline, scroll CTA
+- `#about` — foto/avatar + bio texto (placeholder até LinkedIn)
+- `#skills` — grid de habilidades técnicas (switchers, câmeras, software)
+- `#portfolio` — filtros de categoria + iframe YouTube destaque + grade "Up Next"
+- `#experience` — timeline vertical (placeholder até LinkedIn)
+- `#contact` — botão LinkedIn + e-mail
+
+#### [NEW] style.css (file:///Users/eduardoquirino/Downloads/Portifólio/style.css)
+- CSS custom properties para cores e tipografia
+- Scroll-snap para seções full-viewport
+- Animações de entrada (fade-in, slide)
+- Grid responsivo para portfólio
+- Hover effects em cards de vídeo
+- Indicadores de ponto laterais
+- Labels verticais rotacionadas
+
+#### [NEW] main.js (file:///Users/eduardoquirino/Downloads/Portifólio/main.js)
+- Atualização dos indicadores de ponto conforme scroll
+- Troca do vídeo em destaque ao clicar em "Up Next"
+- Filtros de categoria para portfólio
+- Efeito de typing no hero (opcional)
+
+---
+
+## Estrutura de Seções (Ordem Final)
+
+```
+1. HERO       — Nome + Cargo + Tagline + Scroll indicator
+2. ABOUT      — Bio + Foto (placeholder)
+3. SKILLS     — Grid técnico (switchers, câmeras, protocolos)
+4. PORTFOLIO  — Destaque YouTube + Up Next Grid
+5. EXPERIENCE — Timeline (dados do LinkedIn - posterior)
+6. CONTACT    — Link LinkedIn + e-mail
+```
+
+---
+
+## Dados a Preencher Posteriormente (LinkedIn)
+- [ ] Bio completa
+- [ ] Foto profissional
+- [ ] Histórico de emissoras/empregos
+- [ ] Habilidades técnicas detalhadas
+- [ ] URLs dos vídeos do YouTube
+
+---
+
+## Verification Plan
+
+### Testes Manuais (após build)
+1. `open index.html` no navegador — verificar carregamento sem erros no console
+2. Scroll pela página — verificar que o snap entre seções funciona suavemente
+3. Clicar nos pontos indicadores — verificar navegação correta
+4. Clicar em card "Up Next" — verificar troca do vídeo em destaque
+5. Testar em mobile (DevTools viewport 375px) — verificar responsividade
+6. Testar o botão LinkedIn — verificar que abre em nova aba
+
+### Ferramentas
+- Browser DevTools para console e responsividade
+- Lighthouse (Chrome) para performance score
