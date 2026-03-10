@@ -1,15 +1,16 @@
 /**
  * Eduardo Quirino — Portfólio
- * main.js — Interatividade: scroll, vídeos, filtros, navegação
+ * main.js — Interatividade Premium
  */
 
-/* ─── DOM Ready ────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initNavScroll();
   initDotNav();
   initReveal();
   initMobileMenu();
-  initPortfolio();
+  initPortfolioBento();
+  initVideoModal();
+  initDirectorAesthetic();
   initSmoothLinks();
 });
 
@@ -56,7 +57,6 @@ function initReveal() {
   const els = document.querySelectorAll('.reveal');
   if (!els.length) return;
 
-  // Respect prefers-reduced-motion
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) {
     els.forEach(el => el.classList.add('visible'));
@@ -68,11 +68,13 @@ function initReveal() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          // We don't unobserve to allow re-animating when filtering
+        } else {
+          // Removed logic to hide to keep it simple, but could be used for scroll-out animations
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
   );
 
   els.forEach(el => observer.observe(el));
@@ -89,7 +91,6 @@ function initMobileMenu() {
     burger.setAttribute('aria-expanded', String(isOpen));
   });
 
-  // Close on link click
   links.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       links.classList.remove('open');
@@ -98,108 +99,14 @@ function initMobileMenu() {
   });
 }
 
-/* ─── 5. Portfolio: video switching + filters ───────── */
-function initPortfolio() {
-  const grid = document.getElementById('video-grid');
+/* ─── 5. Bento Portfolio Logic ──────────────────────── */
+function initPortfolioBento() {
+  const grid = document.getElementById('portfolio-grid');
+  const filterBtns = document.querySelectorAll('.filter-btn');
   if (!grid) return;
 
-  const iframe = document.getElementById('main-video-iframe');
-  const featuredTitle = document.getElementById('featured-title');
-  const featuredDesc = document.getElementById('featured-desc');
-  const featuredCat = document.querySelector('.featured-category');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = Array.from(grid.querySelectorAll('.bento-item'));
 
-  let cards = Array.from(grid.querySelectorAll('.video-card'));
-  let visibleCards = [...cards];
-  let activeIndex = 0;
-
-  /* Set featured video */
-  function setFeatured(card) {
-    if (!card) return;
-
-    const videoId = card.dataset.videoId;
-    const title = card.dataset.title;
-    const desc = card.dataset.desc;
-    const cat = card.dataset.category;
-
-    const placeholder = document.getElementById('video-placeholder');
-    const iframeTarget = document.getElementById('video-iframe-target');
-    const placeholderImg = document.getElementById('placeholder-img');
-
-    // Reset placeholder for new video
-    if (placeholder) {
-      placeholder.style.display = 'flex';
-      if (placeholderImg && videoId && !videoId.startsWith('SUBSTITUA')) {
-        placeholderImg.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-      }
-    }
-
-    // Clear old iframe
-    if (iframeTarget) iframeTarget.innerHTML = '';
-
-    if (featuredTitle) featuredTitle.textContent = title || '';
-    if (featuredDesc) featuredDesc.textContent = desc || '';
-    if (featuredCat) featuredCat.textContent = (cat || '').toUpperCase();
-
-    // Active card styling
-    cards.forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
-
-    // Update active index in visible cards
-    activeIndex = visibleCards.indexOf(card);
-
-    // Setup click to load for this specific video
-    const loadVideo = () => {
-      if (iframeTarget && videoId && !videoId.startsWith('SUBSTITUA')) {
-        iframeTarget.innerHTML = `
-          <iframe 
-            src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1" 
-            title="${title}" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen 
-            style="position: absolute; inset: 0; width: 100%; height: 100%;">
-          </iframe>`;
-        if (placeholder) placeholder.style.display = 'none';
-      }
-    };
-
-    // Remove old listeners and add new one
-    const newPlaceholder = placeholder.cloneNode(true);
-    placeholder.parentNode.replaceChild(newPlaceholder, placeholder);
-    newPlaceholder.addEventListener('click', loadVideo);
-  }
-
-  /* Click on Up Next card */
-  grid.addEventListener('click', (e) => {
-    const card = e.target.closest('.video-card');
-    if (!card) return;
-    const visIdx = visibleCards.indexOf(card);
-    if (visIdx !== -1) activeIndex = visIdx;
-    setFeatured(card);
-  });
-
-  /* Prev / Next buttons */
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      if (!visibleCards.length) return;
-      activeIndex = (activeIndex - 1 + visibleCards.length) % visibleCards.length;
-      setFeatured(visibleCards[activeIndex]);
-      visibleCards[activeIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    });
-  }
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      if (!visibleCards.length) return;
-      activeIndex = (activeIndex + 1) % visibleCards.length;
-      setFeatured(visibleCards[activeIndex]);
-      visibleCards[activeIndex]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    });
-  }
-
-  /* Filters */
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => {
@@ -211,19 +118,94 @@ function initPortfolio() {
 
       const filter = btn.dataset.filter;
 
-      cards.forEach(card => {
-        const match = filter === 'all' || card.dataset.category === filter;
-        card.style.display = match ? '' : 'none';
+      items.forEach(item => {
+        const match = filter === 'all' || item.dataset.category === filter;
+        if (match) {
+          item.style.display = 'flex';
+          // Re-trigger reveal animation
+          setTimeout(() => item.classList.add('visible'), 50);
+        } else {
+          item.style.display = 'none';
+          item.classList.remove('visible');
+        }
       });
-
-      visibleCards = cards.filter(c => c.style.display !== 'none');
-      activeIndex = 0;
-      if (visibleCards.length) setFeatured(visibleCards[0]);
     });
   });
 }
 
-/* ─── 6. Smooth scroll for anchor links ─────────────── */
+/* ─── 6. Video Modal Logic ─────────────────────────── */
+function initVideoModal() {
+  const modal = document.getElementById('video-modal');
+  const videoTarget = document.getElementById('modal-video-target');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const bentoItems = document.querySelectorAll('.bento-item');
+  const closeBtn = document.querySelector('.modal-close');
+  const backdrop = document.querySelector('.modal-backdrop');
+
+  if (!modal || !videoTarget) return;
+
+  const openModal = (item) => {
+    const videoId = item.dataset.videoId;
+    const title = item.querySelector('.bento-title').textContent;
+    const desc = item.querySelector('.bento-desc')?.textContent || '';
+
+    if (!videoId) return;
+
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+
+    videoTarget.innerHTML = `
+            <iframe 
+                src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>`;
+
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal.setAttribute('aria-hidden', 'true');
+    videoTarget.innerHTML = '';
+    document.body.style.overflow = '';
+  };
+
+  bentoItems.forEach(item => {
+    item.addEventListener('click', () => openModal(item));
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      closeModal();
+    }
+  });
+}
+
+/* ─── 7. Director Aesthetic (Timecode Animation) ───── */
+function initDirectorAesthetic() {
+  const tcElements = document.querySelectorAll('.timecode');
+  if (!tcElements.length) return;
+
+  setInterval(() => {
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    const ss = String(now.getSeconds()).padStart(2, '0');
+    const ff = String(Math.floor(Math.random() * 30)).padStart(2, '0');
+
+    tcElements.forEach(el => {
+      el.textContent = `${hh}:${mm}:${ss}:${ff}`;
+    });
+  }, 33); // ~30 fps
+}
+
+/* ─── 8. Smooth scroll ─────────────────────────────── */
 function initSmoothLinks() {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {

@@ -148,7 +148,7 @@
                                     </svg>
                                 </div>
                                 <h3 class="service-title">Streaming</h3>
-                                <p class="service-desc">Operação e gerenciamento de transmissões ao vivo online</p>
+                                <p class="service-desc">Operação e gerenciamento de transmissões ao vivo.</p>
                             </div>
                             <div class="service-card">
                                 <div class="service-icon" aria-hidden="true">
@@ -158,8 +158,8 @@
                                         <rect x="1" y="5" width="15" height="14" rx="2" />
                                     </svg>
                                 </div>
-                                <h3 class="service-title">Direção de Câmera</h3>
-                                <p class="service-desc">Coordenação de operadores e enquadramentos ao vivo</p>
+                                <h3 class="service-title">Operador de Câmera</h3>
+                                <p class="service-desc">Operação de câmera e enquadramentos ao vivo</p>
                             </div>
                             <div class="service-card">
                                 <div class="service-icon" aria-hidden="true">
@@ -310,184 +310,172 @@
             <div class="section-label" aria-hidden="true">PORTFÓLIO</div>
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="section-title">Meu <span class="text-gold">Trabalho</span></h2>
-                    <p class="section-sub">Seleção de programas e transmissões que dirigi</p>
+                    <h2 class="section-title">Meus <span class="text-gold">Trabalhos</span></h2>
+                    <p class="section-sub">Seleção de produções e direções que definem minha carreira</p>
                 </div>
 
                 <!-- Category filters -->
-                <div class="portfolio-filters reveal" role="tablist" aria-label="Filtros de categoria">
+                <!-- <div class="portfolio-filters reveal" role="tablist" aria-label="Filtros de categoria">
                     <button class="filter-btn active" role="tab" aria-selected="true" data-filter="all">TODOS</button>
                     <button class="filter-btn" role="tab" aria-selected="false"
                         data-filter="telejornal">TELEJORNAL</button>
                     <button class="filter-btn" role="tab" aria-selected="false"
-                        data-filter="auditorio">AUDITÓRIO</button>
+                        data-filter="Entrevistas">Entrevistas</button>
                     <button class="filter-btn" role="tab" aria-selected="false" data-filter="esporte">ESPORTE</button>
                     <button class="filter-btn" role="tab" aria-selected="false"
                         data-filter="streaming">STREAMING</button>
-                </div>
+                </div> -->
 
-                <!-- Featured video player -->
-                <div class="portfolio-featured reveal reveal--delay-1">
-                    <div class="featured-player">
-                        <div class="video-wrapper" id="featured-player-container">
-                            <!-- Click-to-load placeholder -->
-                            <div class="video-loading-placeholder" id="video-placeholder"
-                                style="position: absolute; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                                <img id="placeholder-img" src="https://img.youtube.com/vi/84w4ONzVTS4/maxresdefault.jpg"
-                                    alt="Preview do vídeo"
-                                    style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6;">
-                                <div class="play-button"
-                                    style="position: relative; z-index: 2; width: 80px; height: 80px; background: rgba(212, 167, 106, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;">
-                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"
-                                        style="color: #0C0A09; margin-left: 4px;">
-                                        <polygon points="5 3 19 12 5 21 5 3" />
-                                    </svg>
+                <div class="bento-grid" id="portfolio-grid">
+                    <!-- High Impact Project (Full width or large bento) -->
+                    <article class="bento-item bento-item--large reveal" data-category="Entrevistas"
+                        data-video-id="84w4ONzVTS4">
+                        <div class="bento-card">
+                            <div class="bento-visual">
+                                <img src="https://img.youtube.com/vi/84w4ONzVTS4/maxresdefault.jpg"
+                                    alt="Juca Kfouri Entrevista" loading="lazy">
+                                <div class="bento-overlay">
+                                    <div class="director-meta">
+                                        <span class="meta-tag">CAM 01</span>
+                                        <span class="meta-tag">LIVE</span>
+                                        <span class="meta-tag timecode">00:00:00:00</span>
+                                    </div>
+                                    <div class="play-indicator">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="video-iframe-target" style="position: absolute; inset: 0;"></div>
-                        </div>
-                    </div>
-                    <div class="featured-info">
-                        <div class="featured-meta">
-                            <span class="featured-category">TELEJORNAL</span>
-                            <span class="featured-likes">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" aria-hidden="true">
-                                    <path
-                                        d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
-                                </svg>
-                                Destaque
-                            </span>
-                        </div>
-                        <h3 class="featured-title" id="featured-title">Programa ao Vivo — Telejornal</h3>
-                        <p class="featured-desc" id="featured-desc">Direção técnica completa da transmissão ao vivo,
-                            coordenando câmeras, grafismo e switcher.</p>
-                    </div>
-                </div>
-
-                <!-- Up Next grid -->
-                <div class="up-next-header reveal">
-                    <h3 class="up-next-label">UP NEXT</h3>
-                    <div class="up-next-controls">
-                        <button class="up-next-btn" id="prev-btn" aria-label="Anterior">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
-                                <polyline points="15 18 9 12 15 6" />
-                            </svg>
-                        </button>
-                        <button class="up-next-btn" id="next-btn" aria-label="Próximo">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" aria-hidden="true">
-                                <polyline points="9 18 15 12 9 6" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="up-next-grid reveal reveal--delay-1" id="video-grid">
-                    <!-- Cards gerados pelo JS ou adicionados manualmente -->
-                    <!-- Exemplo de estrutura — substitua os IDs do YouTube -->
-                    <article class="video-card active" data-video-id="dQw4w9WgXcQ"
-                        data-title="Programa ao Vivo — Telejornal"
-                        data-desc="Direção técnica completa da transmissão ao vivo." data-category="telejornal">
-                        <div class="video-thumb">
-                            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg"
-                                alt="Miniatura: Telejornal ao vivo" loading="lazy" width="320" height="180" />
-                            <div class="video-thumb-overlay" aria-hidden="true">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
+                            <div class="bento-content">
+                                <div class="bento-meta">
+                                    <span class="bento-cat">ENTREVISTAS</span>
+                                    <h3 class="bento-title">Pedro Bial no Juca Kfouri Entrevista</h3>
+                                </div>
+                                <p class="bento-desc">Direção técnica completa e coordenação de switcher.</p>
                             </div>
-                            <span class="video-duration">14:17</span>
-                        </div>
-                        <div class="video-card-info">
-                            <span class="video-cat">TELEJORNAL</span>
-                            <h4 class="video-card-title">Programa ao Vivo — Telejornal</h4>
-                            <div class="video-card-tech">Ross Vision · Sony HDC · NDI</div>
                         </div>
                     </article>
 
-                    <article class="video-card" data-video-id="SUBSTITUA_ID_2" data-title="Programa de Auditório"
-                        data-desc="Direção de programa de auditório ao vivo com múltiplas câmeras."
-                        data-category="auditorio">
-                        <div class="video-thumb">
-                            <img src="https://img.youtube.com/vi/SUBSTITUA_ID_2/mqdefault.jpg"
-                                alt="Miniatura: Programa de Auditório" loading="lazy" width="320" height="180" />
-                            <div class="video-thumb-overlay" aria-hidden="true">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
+                    <!-- Card 2 -->
+                    <article class="bento-item reveal reveal--delay-1" data-category="Telejornal"
+                        data-video-id="AP_jlGq7OvI">
+                        <div class="bento-card">
+                            <div class="bento-visual">
+                                <img src="https://img.youtube.com/vi/AP_jlGq7OvI/mqdefault.jpg" alt="TVT News 1ª Edição"
+                                    loading="lazy">
+                                <div class="bento-overlay">
+                                    <div class="play-indicator play-indicator--sm">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <polygon points="5 3 19 12 5 21 5 3" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="video-duration">22:05</span>
-                        </div>
-                        <div class="video-card-info">
-                            <span class="video-cat">AUDITÓRIO</span>
-                            <h4 class="video-card-title">Programa de Auditório</h4>
-                            <div class="video-card-tech">Tricaster · Operação 8 Câmeras</div>
+                            <div class="bento-content">
+                                <span class="bento-cat">TELEJORNAL</span>
+                                <h3 class="bento-title">TVT News 1ª Edição</h3>
+                                <p class="bento-desc">Direção técnica completa e coordenação de switcher.</p>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="video-card" data-video-id="SUBSTITUA_ID_3" data-title="Cobertura Esportiva"
-                        data-desc="Transmissão ao vivo de evento esportivo com câmeras de alta velocidade."
-                        data-category="esporte">
-                        <div class="video-thumb">
-                            <img src="https://img.youtube.com/vi/SUBSTITUA_ID_3/mqdefault.jpg"
-                                alt="Miniatura: Cobertura Esportiva" loading="lazy" width="320" height="180" />
-                            <div class="video-thumb-overlay" aria-hidden="true">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
+                    <!-- Card 3 -->
+                    <article class="bento-item reveal reveal--delay-2" data-category="Entrevistas"
+                        data-video-id="CP1WauxnptY">
+                        <div class="bento-card">
+                            <div class="bento-visual">
+                                <img src="https://img.youtube.com/vi/CP1WauxnptY/mqdefault.jpg" alt="Juca Kfouri"
+                                    loading="lazy">
+                                <div class="bento-overlay">
+                                    <div class="play-indicator play-indicator--sm">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <polygon points="5 3 19 12 5 21 5 3" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="video-duration">45:00</span>
-                        </div>
-                        <div class="video-card-info">
-                            <span class="video-cat">ESPORTE</span>
-                            <h4 class="video-card-title">Cobertura Esportiva</h4>
-                            <div class="video-card-tech">Instant Replay · Zoom Optics</div>
+                            <div class="bento-content">
+                                <span class="bento-cat">ENTREVISTAS</span>
+                                <h3 class="bento-title">Denise Fraga no Juca Kfouri Entrevista</h3>
+                                <p class="bento-desc">Direção técnica completa e coordenação de switcher.</p>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="video-card" data-video-id="SUBSTITUA_ID_4" data-title="Live Streaming — Evento"
-                        data-desc="Operação de streaming ao vivo para plataformas digitais." data-category="streaming">
-                        <div class="video-thumb">
-                            <img src="https://img.youtube.com/vi/SUBSTITUA_ID_4/mqdefault.jpg"
-                                alt="Miniatura: Live Streaming" loading="lazy" width="320" height="180" />
-                            <div class="video-thumb-overlay" aria-hidden="true">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
+                    <!-- Card 4 (Medium size) -->
+                    <article class="bento-item bento-item--medium reveal reveal--delay-3" data-category="entrevistas"
+                        data-video-id="k1jPXKyK9JA">
+                        <div class="bento-card">
+                            <div class="bento-visual">
+                                <img src="https://img.youtube.com/vi/k1jPXKyK9JA/maxresdefault.jpg" alt=Ëntrevistas"
+                                    loading="lazy">
+                                <div class="bento-overlay">
+                                    <div class="director-meta">
+                                        <span class="meta-tag">ENTREVISTAS</span>
+                                        <span class="meta-tag">NDI</span>
+                                    </div>
+                                    <div class="play-indicator">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="video-duration">1:30:00</span>
-                        </div>
-                        <div class="video-card-info">
-                            <span class="video-cat">STREAMING</span>
-                            <h4 class="video-card-title">Live Streaming — Evento</h4>
-                            <div class="video-card-tech">vMix · SRT · Low Latency</div>
+                            <div class="bento-content">
+                                <span class="bento-cat">ENTREVISTAS</span>
+                                <h3 class="bento-title">Gerald Thomas no Conversa Sem Curva</h3>
+                                <p class="bento-desc">Direção técnica completa e coordenação de switcher.</p>
+                            </div>
                         </div>
                     </article>
 
-                    <article class="video-card" data-video-id="SUBSTITUA_ID_5" data-title="Telejornal — Edição Especial"
-                        data-desc="Edição especial de telejornal com cobertura ao vivo nacional."
-                        data-category="telejornal">
-                        <div class="video-thumb">
-                            <img src="https://img.youtube.com/vi/SUBSTITUA_ID_5/mqdefault.jpg"
-                                alt="Miniatura: Telejornal Edição Especial" loading="lazy" width="320" height="180" />
-                            <div class="video-thumb-overlay" aria-hidden="true">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
+                    <!-- Card 5 -->
+                    <!-- <article class="bento-item reveal reveal--delay-4" data-category="telejornal"
+                        data-video-id="84w4ONzVTS4">
+                        <div class="bento-card">
+                            <div class="bento-visual">
+                                <img src="https://img.youtube.com/vi/84w4ONzVTS4/mqdefault.jpg" alt="Telejornal"
+                                    loading="lazy">
+                                <div class="bento-overlay">
+                                    <div class="play-indicator play-indicator--sm">
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <polygon points="5 3 19 12 5 21 5 3" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="video-duration">30:00</span>
+                            <div class="bento-content">
+                                <span class="bento-cat">TELEJORNAL</span>
+                                <h3 class="bento-title">Cobertura Especial</h3>
+                            </div>
                         </div>
-                        <div class="video-card-info">
-                            <span class="video-cat">TELEJORNAL</span>
-                            <h4 class="video-card-title">Telejornal — Edição Especial</h4>
-                        </div>
-                    </article>
-
+                    </article> -->
                 </div>
             </div>
         </section>
+
+        <!-- Video Modal Overlay -->
+        <div class="video-modal" id="video-modal" aria-hidden="true">
+            <div class="modal-backdrop"></div>
+            <div class="modal-container">
+                <button class="modal-close" aria-label="Fechar vídeo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+                <div class="modal-video-wrapper">
+                    <div id="modal-video-target"></div>
+                </div>
+                <div class="modal-info">
+                    <h3 class="modal-title" id="modal-title">Título do Projeto</h3>
+                    <p class="modal-desc" id="modal-desc">Descrição detalhada do que foi feito na produção.</p>
+                </div>
+            </div>
+        </div>
 
         <!-- ═══════════════════════════════════════════
          SECTION 5 — EXPERIENCE
@@ -501,7 +489,7 @@
                 </div>
                 <div class="timeline">
 
-                    <article class="timeline-item reveal">
+                    <!-- <article class="timeline-item reveal">
                         <div class="timeline-marker" aria-hidden="true"></div>
                         <div class="timeline-content">
                             <div class="timeline-meta">
@@ -520,7 +508,7 @@
                                 <span class="skill-tag--sm">Digital Content</span>
                             </div>
                         </div>
-                    </article>
+                    </article> -->
 
                     <article class="timeline-item reveal reveal--delay-1">
                         <div class="timeline-marker" aria-hidden="true"></div>
@@ -676,7 +664,7 @@
         <div class="container">
             <div class="footer-inner">
                 <span class="footer-logo">EQ</span>
-                <p class="footer-copy">© 2025 Eduardo Quirino. Todos os direitos reservados.</p>
+                <p class="footer-copy">© 2026 Eduardo Quirino. Todos os direitos reservados.</p>
                 <div class="footer-social">
                     <a href="https://www.linkedin.com/in/eduardoquirino" target="_blank" rel="noopener noreferrer"
                         aria-label="LinkedIn de Eduardo Quirino">
